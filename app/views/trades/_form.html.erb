@@ -1,0 +1,52 @@
+<%= form_with(model: trade) do |form| %>
+  <% if trade.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(trade.errors.count, "error") %> prohibited this trade from being saved:</h2>
+
+      <ul>
+        <% trade.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :start, style: "display: block" %>
+    <%= form.time_field :start %>
+  </div>
+
+  <div>
+    <%= form.label :end, style: "display: block" %>
+    <%= form.time_field :end %>
+  </div>
+
+  <div>
+    <%= form.label :early_start, style: "display: block" %>
+    <%= form.time_field :early_start %>
+  </div>
+
+  <div>
+    <%= form.label :late_end, style: "display: block" %>
+    <%= form.time_field :late_end %>
+  </div>
+
+  <div>
+    <%= form.label :conviction, style: "display: block" %>
+    <%= form.number_field :conviction %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

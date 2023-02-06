@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  start: 2023-02-04 17:35:31
+  end: 2023-02-04 17:35:31
+  early_start: 2023-02-04 17:35:31
+  late_end: 2023-02-04 17:35:31
+  conviction: 1
+
+two:
+  title: MyString
+  description: MyText
+  start: 2023-02-04 17:35:31
+  end: 2023-02-04 17:35:31
+  early_start: 2023-02-04 17:35:31
+  late_end: 2023-02-04 17:35:31
+  conviction: 1
