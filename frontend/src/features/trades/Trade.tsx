@@ -19,25 +19,28 @@ export function Trade(props: any) {
   };
 
   return (
-    <div
-      className={"bg-orange-200"}
-      style={{
-        // width: `${Math.ceil(50)}%`,
-        marginLeft: `${props.start}px`,
-        marginRight: `${props.end}px`,
-      }}
-    >
+    <div className="my-2">
       <div
-        className={
-          props.isSelectedTrade(props.trade) ? "border-2 border-blue-300" : ""
-        }
-        onClick={clickOnTrade}
+        className="bg-orange-200 shadow-md"
+        style={{
+          // width: `${Math.ceil(50)}%`,
+          marginLeft: `${props.start}px`,
+          marginRight: `${props.end}px`,
+        }}
       >
-        <div>
+        <div
+          className={
+            props.isSelectedTrade(props.trade) ? "border-2 border-blue-300" : ""
+          }
+          // className="border-2 border-blue-300 rounded-lg"
+          onClick={clickOnTrade}
+        >
+          {/* <div>
           start: {props.start}, end: {props.end}
+        </div> */}
+          <div className="">{title}</div>
+          {/* <p>{description}</p> */}
         </div>
-        <h2 className="underline">{title}</h2>
-        <p>{description}</p>
       </div>
     </div>
   );

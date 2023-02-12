@@ -73,7 +73,7 @@ export function Timeline(props: any) {
 
   return (
     // <div className="w-[500px]">
-    <div>
+    <div className="">
       {props.trades &&
         props.trades.length > 0 &&
         props.trades.map((trade: any) => {

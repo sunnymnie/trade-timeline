@@ -70,22 +70,24 @@ export function Trades() {
     // );
   }
   return (
-    <div>
-      <h1>Trades WORKS!</h1>
-      <div>{JSON.stringify(dimensions)}</div>
-      {/* <h3>Status: {}</h3>
-      <div>{contents}</div>
-      <div>Selected trade:</div>
-      <div>
-        {selectedTrade && <div>{JSON.stringify(selectedTrade.title)}</div>}
-      </div> */}
-      <Timeline
-        dispatch={dispatch}
-        trades={trades}
-        setSelectedTrade={setSelectedTrade}
-        isSelectedTrade={isSelectedTrade}
-      />
-      {/* <Slider /> */}
+    <div className="h-screen bg-red-500">
+      <div className="bg-blue-500 py-3">
+        <h1>Header: Dashboard</h1>
+      </div>
+      <div className="flex h-full bg-gray-200">
+        <div className="w-3/4 bg-green-200">
+          <Timeline
+            dispatch={dispatch}
+            trades={trades}
+            setSelectedTrade={setSelectedTrade}
+            isSelectedTrade={isSelectedTrade}
+          />
+        </div>
+        <div className="w-1/4 bg-purple-200">
+          Trade info column
+          <div>{selectedTrade && JSON.stringify(selectedTrade)}</div>
+        </div>
+      </div>
     </div>
   );
 }
