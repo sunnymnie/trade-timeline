@@ -5,6 +5,7 @@ import { AppDispatch } from "../../app/store";
 import Slider from "./Slider";
 import Timeline from "./Timeline";
 import Trade from "./Trade";
+import TradeForm from "./TradeForm";
 import { tradeState } from "./tradeSlice";
 
 import {
@@ -85,7 +86,8 @@ export function Trades() {
         </div>
         <div className="w-1/4 bg-purple-200">
           Trade info column
-          <div>{selectedTrade && JSON.stringify(selectedTrade)}</div>
+          {/* <div>{selectedTrade && JSON.stringify(selectedTrade)}</div> */}
+          <TradeForm />
         </div>
       </div>
     </div>

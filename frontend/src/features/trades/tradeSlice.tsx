@@ -1,12 +1,20 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../../app/store";
-import { fetchTrades } from "./tradeAPI";
+import { fetchTrades, createTrade } from "./tradeAPI";
 import produce from "immer";
 // import { fetchCount } from './counterAPI';
 
 export interface tradesState {
   trades: tradeState[];
   status: string;
+}
+
+export interface TradeFormData {
+  trade: {
+    id?: string;
+    title: string;
+    description: string;
+  };
 }
 
 export interface tradeState {
@@ -71,6 +79,14 @@ export const fetchTradesAsync = createAsyncThunk(
   }
 );
 
+export const createTradeAsync = createAsyncThunk(
+  "trades/createTrades",
+  async (payload: TradeFormData) => {
+    const response = await createTrade(payload);
+    return response;
+  }
+);
+
 export const tradesSlice = createSlice({
   name: "trades",
   initialState,
@@ -93,6 +109,24 @@ export const tradesSlice = createSlice({
         });
       })
       .addCase(fetchTradesAsync.rejected, (state) => {
+        return produce(state, (draftState) => {
+          draftState.status = Status.Error;
+        });
+      })
+      /* Update section */
+      .addCase(createTradeAsync.pending, (state) => {
+        // state.status = "loading";
+        return produce(state, (draftState) => {
+          draftState.status = Status.Loading;
+        });
+      })
+      .addCase(createTradeAsync.fulfilled, (state, action) => {
+        return produce(state, (draftState) => {
+          draftState.trades.push(action.payload);
+          draftState.status = Status.Fetched;
+        });
+      })
+      .addCase(createTradeAsync.rejected, (state) => {
         return produce(state, (draftState) => {
           draftState.status = Status.Error;
         });
