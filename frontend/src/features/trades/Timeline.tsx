@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import TimeSlider from "./TimeSlider";
 import Trade from "./Trade";
 
 export function Timeline(props: any) {
@@ -21,7 +22,7 @@ export function Timeline(props: any) {
 
   let date: Date = new Date();
 
-  const [days, setDays] = useState(100);
+  const [daysFromNow, setDaysFromNow] = useState(30);
 
   function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -73,24 +74,28 @@ export function Timeline(props: any) {
 
   return (
     // <div className="w-[500px]">
-    <div className="">
-      {props.trades &&
-        props.trades.length > 0 &&
-        props.trades.map((trade: any) => {
-          return (
-            <div key={trade.id}>
-              <Trade
-                dispatch={props.dispatch}
-                trade={trade}
-                setSelectedTrade={props.setSelectedTrade}
-                isSelectedTrade={props.isSelectedTrade}
-                start={Math.ceil(testStart(trade.id) * width)}
-                end={Math.ceil((1 - testEnd(trade.id)) * width)}
-              />
-            </div>
-          );
-        })}
+    <div>
+      <TimeSlider setDaysFromNow={setDaysFromNow} daysFromNow={daysFromNow} />
+      <div className="">
+        {props.trades &&
+          props.trades.length > 0 &&
+          props.trades.map((trade: any) => {
+            return (
+              <div key={trade.id}>
+                <Trade
+                  dispatch={props.dispatch}
+                  trade={trade}
+                  setSelectedTrade={props.setSelectedTrade}
+                  isSelectedTrade={props.isSelectedTrade}
+                  start={Math.ceil(testStart(trade.id) * width)}
+                  end={Math.ceil((1 - testEnd(trade.id)) * width)}
+                />
+              </div>
+            );
+          })}
+      </div>
     </div>
+
     // <Trade
     //   trade={props.trades[0]}
     //   setSelectedTrade={props.setSelectedTrade}

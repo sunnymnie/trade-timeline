@@ -1,6 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../../app/store";
-import { fetchTrades, createTrade } from "./tradeAPI";
+import {
+  fetchTrades,
+  createTrade,
+  updateTrade,
+  destroyTrade,
+} from "./tradeAPI";
 import produce from "immer";
 // import { fetchCount } from './counterAPI';
 
@@ -14,6 +19,17 @@ export interface TradeFormData {
     id?: string;
     title: string;
     description: string;
+  };
+}
+
+export interface TradeUpdateData {
+  trade_id: number;
+  trade: tradeState;
+}
+
+export interface TradeDeleteData {
+  trade: {
+    trade_id: number;
   };
 }
 
@@ -80,9 +96,25 @@ export const fetchTradesAsync = createAsyncThunk(
 );
 
 export const createTradeAsync = createAsyncThunk(
-  "trades/createTrades",
+  "trades/createTrade",
   async (payload: TradeFormData) => {
     const response = await createTrade(payload);
+    return response;
+  }
+);
+
+export const updateTradeAsync = createAsyncThunk(
+  "trades/updateTrade",
+  async (payload: TradeFormData) => {
+    const response = await updateTrade(payload);
+    return response;
+  }
+);
+
+export const destroyTradeAsync = createAsyncThunk(
+  "trades/destroyTrade",
+  async (payload: TradeDeleteData) => {
+    const response = await destroyTrade(payload);
     return response;
   }
 );
@@ -113,7 +145,7 @@ export const tradesSlice = createSlice({
           draftState.status = Status.Error;
         });
       })
-      /* Update section */
+      /* Create section */
       .addCase(createTradeAsync.pending, (state) => {
         // state.status = "loading";
         return produce(state, (draftState) => {
@@ -127,6 +159,45 @@ export const tradesSlice = createSlice({
         });
       })
       .addCase(createTradeAsync.rejected, (state) => {
+        return produce(state, (draftState) => {
+          draftState.status = Status.Error;
+        });
+      })
+      /* Update section */
+      .addCase(updateTradeAsync.pending, (state) => {
+        // state.status = "loading";
+        return produce(state, (draftState) => {
+          draftState.status = Status.Loading;
+        });
+      })
+      .addCase(updateTradeAsync.fulfilled, (state, action) => {
+        return produce(state, (draftState) => {
+          const index = draftState.trades.findIndex(
+            (trade) => trade.id === action.payload.trade.id
+          );
+          draftState.trades[index] = action.payload;
+          draftState.status = Status.Fetched;
+        });
+      })
+      .addCase(updateTradeAsync.rejected, (state) => {
+        return produce(state, (draftState) => {
+          draftState.status = Status.Error;
+        });
+      })
+      /* Destroy section */
+      .addCase(destroyTradeAsync.pending, (state) => {
+        // state.status = "loading";
+        return produce(state, (draftState) => {
+          draftState.status = Status.Loading;
+        });
+      })
+      .addCase(destroyTradeAsync.fulfilled, (state, action) => {
+        return produce(state, (draftState) => {
+          draftState.trades = action.payload;
+          draftState.status = Status.Fetched;
+        });
+      })
+      .addCase(destroyTradeAsync.rejected, (state) => {
         return produce(state, (draftState) => {
           draftState.status = Status.Error;
         });

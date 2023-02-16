@@ -4,6 +4,7 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { AppDispatch } from "../../app/store";
 import Slider from "./Slider";
 import Timeline from "./Timeline";
+import TimeSlider from "./TimeSlider";
 import Trade from "./Trade";
 import TradeForm from "./TradeForm";
 import { tradeState } from "./tradeSlice";
@@ -86,8 +87,11 @@ export function Trades() {
         </div>
         <div className="w-1/4 bg-purple-200">
           Trade info column
-          {/* <div>{selectedTrade && JSON.stringify(selectedTrade)}</div> */}
-          <TradeForm />
+          <div>
+            {/* {selectedTrade ? JSON.stringify(selectedTrade) : <TradeForm />} */}
+            <TradeForm selectedTrade={selectedTrade} dispatch={dispatch} />
+          </div>
+          {/* <TradeForm /> */}
         </div>
       </div>
     </div>
