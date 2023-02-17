@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_05_013530) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_17_022656) do
   create_table "trades", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.time "start"
-    t.time "end"
-    t.time "early_start"
-    t.time "late_end"
+    t.datetime "start", precision: nil
+    t.datetime "end", precision: nil
+    t.datetime "early_start", precision: nil
+    t.datetime "late_end", precision: nil
     t.integer "conviction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

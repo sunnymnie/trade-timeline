@@ -53,13 +53,13 @@ export function Timeline(props: any) {
     return `w-[${width}px]`;
   };
 
-  const screenClassName = (width: number) => {
-    return `absolute ${screenWidth(width)} h-100 bg-red-500`;
-  };
+  // const screenClassName = (width: number) => {
+  //   return `absolute ${screenWidth(width)} h-100 bg-red-500`;
+  // };
 
-  const num = () => {
-    return "1/4";
-  };
+  // const num = () => {
+  //   return "1/4";
+  // };
   const testStart = (length: number) => {
     const obj: any = [0, 0.5, 0.34, 0.04, 0.25];
     return obj[length];
@@ -71,6 +71,8 @@ export function Timeline(props: any) {
   };
 
   const width = (useWindowDimensions().width * 3) / 4;
+
+  const getStart = (l: number) => {};
 
   return (
     // <div className="w-[500px]">

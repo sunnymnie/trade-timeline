@@ -19,6 +19,8 @@ export interface TradeFormData {
     id?: string;
     title: string;
     description: string;
+    start: string;
+    end: string;
   };
 }
 
@@ -119,6 +121,29 @@ export const destroyTradeAsync = createAsyncThunk(
   }
 );
 
+export const updateTradeToISOTime = (trade: tradeState) => {
+  try {
+    console.log("Updating trade to ISO time with start:", trade.start);
+    // trade.start = trade.start.toISOString();
+    // trade.end = trade.end.toISOString();
+  } catch (e) {
+    console.log("ERROR in updateTradeToISOTime", e);
+    trade.start = undefined;
+    trade.end = undefined;
+  }
+};
+
+export const updateTradeToDate = (trade: tradeState) => {
+  try {
+    trade.start = new Date(trade.start);
+    trade.end = new Date(trade.end);
+  } catch (e) {
+    console.log("ERROR in updateTradeToDate: ", e);
+    trade.start = new Date();
+    trade.end = new Date();
+  }
+};
+
 export const tradesSlice = createSlice({
   name: "trades",
   initialState,
@@ -137,6 +162,9 @@ export const tradesSlice = createSlice({
       .addCase(fetchTradesAsync.fulfilled, (state, action) => {
         return produce(state, (draftState) => {
           draftState.trades = action.payload;
+          draftState.trades.forEach((trade) => {
+            updateTradeToDate(trade);
+          });
           draftState.status = Status.Fetched;
         });
       })
@@ -154,6 +182,9 @@ export const tradesSlice = createSlice({
       })
       .addCase(createTradeAsync.fulfilled, (state, action) => {
         return produce(state, (draftState) => {
+          console.log("create section");
+          updateTradeToDate(action.payload);
+          console.log(action.payload);
           draftState.trades.push(action.payload);
           draftState.status = Status.Fetched;
         });
@@ -175,6 +206,7 @@ export const tradesSlice = createSlice({
           const index = draftState.trades.findIndex(
             (trade) => trade.id === action.payload.trade.id
           );
+          updateTradeToDate(action.payload);
           draftState.trades[index] = action.payload;
           draftState.status = Status.Fetched;
         });

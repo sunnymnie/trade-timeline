@@ -23,6 +23,8 @@ class TradesController < ApplicationController
 
   # POST /trades or /trades.json
   def create
+    # puts "🟡🟡Here are the trade params🟡🟡"
+    # puts trade_params
     @trade = Trade.new(trade_params)
 
     respond_to do |format|
