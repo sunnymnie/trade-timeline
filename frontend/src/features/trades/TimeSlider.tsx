@@ -12,7 +12,7 @@ export function TimeSlider(props: any) {
           min="7"
           max="365"
           value={props.daysFromNow}
-          onChange={(e) => props.setDaysFromNow(e.target.value)}
+          onChange={(e) => props.setDaysFromNow(parseInt(e.target.value))}
         />
         <p>Days from now: {props.daysFromNow}</p>
       </div>
