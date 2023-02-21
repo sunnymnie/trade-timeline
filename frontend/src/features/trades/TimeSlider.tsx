@@ -5,17 +5,16 @@ import React, { useEffect, useRef, useState } from "react";
 
 export function TimeSlider(props: any) {
   return (
-    <div className="bg-green-100">
-      <div>
-        <input
-          type="range"
-          min="7"
-          max="365"
-          value={props.daysFromNow}
-          onChange={(e) => props.setDaysFromNow(parseInt(e.target.value))}
-        />
-        <p>Days from now: {props.daysFromNow}</p>
-      </div>
+    <div className="bg-green-100 flex w-full justify-start">
+      <p>View range: </p>
+      <input
+        // className="w-[80%]"
+        type="range"
+        min="7"
+        max="365"
+        value={props.daysFromNow}
+        onChange={(e) => props.setDaysFromNow(parseInt(e.target.value))}
+      />
     </div>
   );
 }

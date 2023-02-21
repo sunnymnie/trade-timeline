@@ -24,7 +24,7 @@ export function Trades() {
     undefined
   );
   const isSelectedTrade = (trade: tradeState) => {
-    return selectedTrade && selectedTrade.id == trade.id;
+    return selectedTrade && selectedTrade.id === trade.id;
   };
 
   const refContainer: any = useRef();
@@ -72,12 +72,12 @@ export function Trades() {
     // );
   }
   return (
-    <div className="h-screen bg-red-500">
-      <div className="bg-blue-500 py-3">
-        <h1>Header: Dashboard</h1>
+    <div className="h-screen">
+      <div className="bg-blue-500 w-full absolute h-[3em] flex">
+        <h1 className="m-auto">Header: Dashboard</h1>
       </div>
-      <div className="flex h-full bg-gray-200">
-        <div className="w-3/4 bg-green-200">
+      <div className="flex h-full">
+        <div className="w-3/4 mt-[3em]">
           <Timeline
             dispatch={dispatch}
             trades={trades}
@@ -85,7 +85,7 @@ export function Trades() {
             isSelectedTrade={isSelectedTrade}
           />
         </div>
-        <div className="w-1/4 bg-purple-200">
+        <div className="w-1/4 bg-purple-200 mt-[3em]">
           Trade info column
           <div>
             {/* {selectedTrade ? JSON.stringify(selectedTrade) : <TradeForm />} */}

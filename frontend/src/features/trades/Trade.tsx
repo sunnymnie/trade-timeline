@@ -19,9 +19,9 @@ export function Trade(props: any) {
   };
 
   return (
-    <div className="my-2">
+    <div className="my-2 whitespace-nowrap">
       <div
-        className="bg-orange-200 shadow-md"
+        className="bg-orange-100 shadow-md"
         style={{
           // width: `${Math.ceil(50)}%`,
           marginLeft: `${props.start}px`,
@@ -29,9 +29,7 @@ export function Trade(props: any) {
         }}
       >
         <div
-          className={
-            props.isSelectedTrade(props.trade) ? "border-2 border-blue-300" : ""
-          }
+          className={props.isSelectedTrade(props.trade) ? "bg-orange-200" : ""}
           // className="border-2 border-blue-300 rounded-lg"
           onClick={clickOnTrade}
         >

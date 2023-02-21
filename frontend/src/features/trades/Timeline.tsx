@@ -181,33 +181,29 @@ export function Timeline(props: any) {
 
   return (
     // <div className="w-[500px]">
-    <div>
+    <div className="h-[100%]">
       <TimeSlider setDaysFromNow={setDaysFromNow} daysFromNow={daysFromNow} />
-      <div>
-        <div>{startDate.toISOString()}</div>
-        <div>{endDate.toISOString()}</div>
-        <div>{length}</div>
-        <div>{daysFromNow}</div>
-      </div>
       <div className="">
-        {props.trades &&
-          props.trades.length > 0 &&
-          props.trades.map((trade: any) => {
-            return (
-              <div key={trade.id}>
-                <Trade
-                  dispatch={props.dispatch}
-                  trade={trade}
-                  setSelectedTrade={props.setSelectedTrade}
-                  isSelectedTrade={props.isSelectedTrade}
-                  start={getStart(trade.start)}
-                  end={getEnd(trade.end)}
-                />
-              </div>
-            );
-          })}
+        <div className="">
+          {props.trades &&
+            props.trades.length > 0 &&
+            props.trades.map((trade: any) => {
+              return (
+                <div key={trade.id}>
+                  <Trade
+                    dispatch={props.dispatch}
+                    trade={trade}
+                    setSelectedTrade={props.setSelectedTrade}
+                    isSelectedTrade={props.isSelectedTrade}
+                    start={getStart(trade.start)}
+                    end={getEnd(trade.end)}
+                  />
+                </div>
+              );
+            })}
+        </div>
+        <div className="">{rows.map((row: any) => row)}</div>
       </div>
-      <div className="">{rows.map((row: any) => row)}</div>
     </div>
 
     // <Trade
