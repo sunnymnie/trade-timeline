@@ -99,7 +99,7 @@ export function TradeForm(props: any) {
   }
 
   return (
-    <form className="flex-col h-full space-y-4 mx-4">
+    <form className="flex-col h-full space-y-4 mx-4 my-4">
       <div className="">
         <input
           type="text"

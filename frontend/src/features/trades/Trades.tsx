@@ -70,8 +70,8 @@ export function Trades() {
   }
   return (
     <div className="h-screen">
-      <div className="bg-blue-500 w-full absolute h-[3em] flex">
-        <h1 className="m-auto">Header: Dashboard</h1>
+      <div className="bg-blue-300 w-full absolute h-[3em] flex">
+        <h1 className="m-auto text-2xl font-bold ">Trade Timeline</h1>
       </div>
       <div className="flex h-full">
         <div className="w-3/4 mt-[3em]">
