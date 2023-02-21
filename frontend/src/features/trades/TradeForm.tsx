@@ -10,9 +10,7 @@ import {
 } from "./tradeSlice";
 
 export function TradeForm(props: any) {
-  //   const count = useAppSelector(selectCount);
-  // const dispatch = useDispatch(); // could pass through props
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = props.dispatch;
   const [title, setTitle] = useState(
     props.selectedTrade ? props.selectedTrade.title : ""
   );
@@ -96,59 +94,57 @@ export function TradeForm(props: any) {
   function resetState() {
     setTitle(props.selectedTrade ? props.selectedTrade.title : "");
     setDescription(props.selectedTrade ? props.selectedTrade.description : "");
+    setStart(props.selectedTrade ? props.selectedTrade.start : undefined);
+    setEnd(props.selectedTrade ? props.selectedTrade.end : undefined);
   }
 
-  //   const [incrementAmount, setIncrementAmount] = useState('2');
-
-  //   const incrementValue = Number(incrementAmount) || 0;
-
   return (
-    <div>
-      <h2>Trade Form</h2>
-      {props.selectedTrade ? <p>Selected trade</p> : <p>No selected trade</p>}
-      <form>
-        <div>
-          <p>Title</p>
-          <input
-            type="text"
-            name="title"
-            className=""
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        <div>
-          <p>Descripition</p>
-          <textarea
-            name="description"
-            className=""
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-        <div>
-          <p>Start Date</p>
+    <form className="flex-col h-full space-y-4 mx-4">
+      <div className="">
+        <input
+          type="text"
+          name="title"
+          className="text-2xl font-bold w-full text-center bg-transparent focus:outline-none focus:bg-blue-200"
+          placeholder="New Trade Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      </div>
+      <div>
+        <div className="flex space-x-2">
+          <p>Start: </p>
           <input
             type="date"
             name="start"
-            className=""
+            className="bg-transparent focus:outline-none focus:bg-blue-200"
             value={convertDateToString(start)}
             onChange={(e) => setStart(convertStringToDate(e.target.value))}
           />
         </div>
-        <div>
-          <p>End Date</p>
+        <div className="flex space-x-2">
+          <p>End: </p>
           <input
             type="date"
             name="end"
-            className=""
+            className="bg-transparent focus:outline-none focus:bg-blue-200"
             value={convertDateToString(end)}
             onChange={(e) => setEnd(convertStringToDate(e.target.value))}
           />
         </div>
-
+      </div>
+      <div className="grow">
+        <textarea
+          name="description"
+          placeholder="New Trade Description"
+          className="h-full w-full bg-transparent focus:outline-none focus:bg-blue-200"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </div>
+      <div className="flex justify-evenly">
         <button
           type="submit"
+          className="bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
           onClick={
             props.selectedTrade
               ? (e) => updateHandler(e)
@@ -158,12 +154,16 @@ export function TradeForm(props: any) {
           {props.selectedTrade ? "Update" : "Create"}
         </button>
         {props.selectedTrade && (
-          <button type="button" onClick={(e) => deleteHandler(e)}>
+          <button
+            type="button"
+            className="bg-red-300 hover:bg-red-500 text-white font-bold py-2 px-4 rounded"
+            onClick={(e) => deleteHandler(e)}
+          >
             Delete
           </button>
         )}
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }
 

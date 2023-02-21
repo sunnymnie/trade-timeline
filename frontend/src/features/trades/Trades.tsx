@@ -40,9 +40,6 @@ export function Trades() {
   useEffect(() => {
     dispatch(fetchTradesAsync());
   }, [dispatch]);
-  //   const [incrementAmount, setIncrementAmount] = useState('2');
-
-  //   const incrementValue = Number(incrementAmount) || 0;
 
   let contents;
 
@@ -85,13 +82,8 @@ export function Trades() {
             isSelectedTrade={isSelectedTrade}
           />
         </div>
-        <div className="w-1/4 bg-purple-200 mt-[3em]">
-          Trade info column
-          <div>
-            {/* {selectedTrade ? JSON.stringify(selectedTrade) : <TradeForm />} */}
-            <TradeForm selectedTrade={selectedTrade} dispatch={dispatch} />
-          </div>
-          {/* <TradeForm /> */}
+        <div className="w-1/4 bg-blue-100 mt-[3em]">
+          <TradeForm selectedTrade={selectedTrade} dispatch={dispatch} />
         </div>
       </div>
     </div>
