@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { AppDispatch } from "../../app/store";
-import Slider from "./Slider";
 import Timeline from "./Timeline";
 import TimeSlider from "./TimeSlider";
 import Trade from "./Trade";

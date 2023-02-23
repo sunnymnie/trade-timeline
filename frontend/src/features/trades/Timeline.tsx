@@ -4,23 +4,6 @@ import TimeSlider from "./TimeSlider";
 import Trade from "./Trade";
 
 export function Timeline(props: any) {
-  //   const count = useAppSelector(selectCount);
-  //   const dispatch = useAppDispatch();
-  //   const [incrementAmount, setIncrementAmount] = useState('2');
-
-  //   const incrementValue = Number(incrementAmount) || 0;
-
-  //   const [isSelected, setIsSelected] = useState(false);
-
-  //   const [title, setTitle] = useState(props.trade.title);
-  //   const [description, setDescription] = useState(props.trade.description);
-
-  //   const clickOnTrade = () => {
-  //     props.isSelectedTrade(props.trade)
-  //       ? props.setSelectedTrade(undefined)
-  //       : props.setSelectedTrade(props.trade);
-  //   };
-
   let date: Date = new Date();
 
   const [daysFromNow, setDaysFromNow] = useState<number>(30);
@@ -29,13 +12,6 @@ export function Timeline(props: any) {
     new Date().setDate(new Date().getDate() + daysFromNow)
   );
   const startDate = new Date(new Date().setDate(new Date().getDate() - 10));
-
-  // useEffect(() => {
-  //   const endDate = new Date(
-  //     new Date().setDate(new Date().getDate() + daysFromNow)
-  //   );
-  //   const startDate = new Date(new Date().setDate(new Date().getDate() - 10));
-  // }, [daysFromNow]);
 
   const daysDifferenceBetweenDates = (later: Date, earlier: Date) => {
     return Math.ceil(
@@ -70,27 +46,6 @@ export function Timeline(props: any) {
     return windowDimensions;
   }
 
-  const screenWidth = (width: number) => {
-    return `w-[${width}px]`;
-  };
-
-  // const screenClassName = (width: number) => {
-  //   return `absolute ${screenWidth(width)} h-100 bg-red-500`;
-  // };
-
-  // const num = () => {
-  //   return "1/4";
-  // };
-  const testStart = (length: number) => {
-    const obj: any = [0, 0.5, 0.34, 0.04, 0.25];
-    return obj[length];
-  };
-
-  const testEnd = (length: number) => {
-    const obj: any = [0.5, 1, 0.56, 0.23, 0.88];
-    return obj[length];
-  };
-
   const width = (useWindowDimensions().width * 3) / 4;
 
   const getStart = (start: Date) => {
@@ -108,8 +63,6 @@ export function Timeline(props: any) {
   const getNumberOfDaysInMonth = (date: Date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   };
-
-  const debugginginfo = [];
 
   function addDays(date: Date, days: number) {
     var result = new Date(date);
@@ -142,13 +95,6 @@ export function Timeline(props: any) {
         top={0}
       />
     );
-    debugginginfo.push({
-      date: startDate.toISOString(),
-      start: getStart(startDate),
-      end: getEnd(getEndOfMonth(startDate)),
-      endDate: getEndOfMonth(startDate).toISOString(),
-      days: remainingDays,
-    });
   }
   i += remainingDays + 1;
   while (i < length) {
@@ -163,24 +109,10 @@ export function Timeline(props: any) {
         top={1}
       />
     );
-    debugginginfo.push({
-      date: date.toISOString(),
-      start: getStart(date),
-      end: getEnd(getEndOfMonth(date)),
-      endDate: getEndOfMonth(date).toISOString(),
-      days: days,
-    });
     i += days;
   }
-  // for (let i = 0; i < numrows; i++) {
-  //   // note: we are adding a key prop here to allow react to uniquely identify each
-  //   // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
-  //   rows.push(<ObjectRow key={i} />);
-  // }
-  // return <tbody>{rows}</tbody>;
 
   return (
-    // <div className="w-[500px]">
     <div className="h-[100%]">
       <TimeSlider setDaysFromNow={setDaysFromNow} daysFromNow={daysFromNow} />
       <div className="">
@@ -205,60 +137,7 @@ export function Timeline(props: any) {
         <div className="">{rows.map((row: any) => row)}</div>
       </div>
     </div>
-
-    // <Trade
-    //   trade={props.trades[0]}
-    //   setSelectedTrade={props.setSelectedTrade}
-    //   isSelectedTrade={props.isSelectedTrade}
-    //   dispatch={props.dispatch}
-    //   width={200}
-    // />
-    // </div>
   );
-
-  //   if (props.trades.length < 1) {
-  //     return (
-  //       <div>
-  //         {/* <div>{JSON.stringify(useWindowDimensions())}</div>;<div></div>
-  //         <div className={`absolute w-{${num()}} h-100 bg-red-500`}>hi</div>
-  //         <div className={`absolute w-[1/4] h-100 bg-red-500`}>bye</div> */}
-  //         <div>{JSON.stringify(props.trade[0])}</div>
-  //         <div>trade below here</div>
-  // {/* <Trade
-  //   trade={props.trades[0]}
-  //   setSelectedTrade={props.setSelectedTrade}
-  //   isSelectedTrade={props.isSelectedTrade}
-  //   dispatch={props.dispatch}
-  //   width={200}
-  // /> */}
-  //         <div>trade above here</div>
-  //       </div>
-  //     );
-  //   } else {
-  //     return (
-  //       <div>
-  //         False {JSON.stringify(props)}, {props.trades.length < 1 ? "no" : "yes"}
-  //       </div>
-  //     );
-  //   }
-
-  //   return (
-  //     props.trades.length ? (<div>
-  //         <div>{JSON.stringify(useWindowDimensions())}</div>;<div></div>
-  //         <div className={`absolute w-{${num()}} h-100 bg-red-500`}>hi</div>
-  //         <div className={`absolute w-[1/4] h-100 bg-red-500`}>bye</div>
-  //         <div>{JSON.stringify(props.trade[0])}</div>
-  //         <div>trade below here</div>
-  //         <Trade
-  //           trade={props.trades[0]}
-  //           setSelectedTrade={props.setSelectedTrade}
-  //           isSelectedTrade={props.isSelectedTrade}
-  //           dispatch={props.dispatch}
-  //           width={200}
-  //         />
-  //         <div>trade above here</div>
-  //       </div>) : (<div>hi</div>)}
-  //     )
 }
 
 export default Timeline;

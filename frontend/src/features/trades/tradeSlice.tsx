@@ -124,8 +124,6 @@ export const destroyTradeAsync = createAsyncThunk(
 export const updateTradeToISOTime = (trade: tradeState) => {
   try {
     console.log("Updating trade to ISO time with start:", trade.start);
-    // trade.start = trade.start.toISOString();
-    // trade.end = trade.end.toISOString();
   } catch (e) {
     console.log("ERROR in updateTradeToISOTime", e);
     trade.start = undefined;
