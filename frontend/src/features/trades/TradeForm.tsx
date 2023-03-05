@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../app/store";
 import {
@@ -23,6 +23,22 @@ export function TradeForm(props: any) {
   const [end, setEnd] = useState(
     props.selectedTrade ? props.selectedTrade.end : undefined
   );
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      const parent = textarea.parentElement;
+      if (parent) {
+        const parentHeight = parent.offsetHeight;
+        const textareaHeight = textarea.scrollHeight;
+        if (textareaHeight < parentHeight / 2) {
+          textarea.style.height = "auto";
+          textarea.style.height = textareaHeight + "px";
+        }
+      }
+    }
+  }, [description]);
 
   const convertDateToString = (date?: Date) => {
     if (!date) return "";
@@ -132,15 +148,35 @@ export function TradeForm(props: any) {
           />
         </div>
       </div>
-      <div className="grow">
+      {/* <div className="h-auto overflow-hidden">
         <textarea
           name="description"
           placeholder="New Trade Description"
-          className="h-full w-full bg-transparent focus:outline-none focus:bg-blue-200"
+          className="min-h-[0] w-full bg-transparent focus:outline-none focus:bg-blue-200"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-      </div>
+      </div> */}
+      {/* <div> */}
+      <textarea
+        ref={textareaRef}
+        name="description"
+        placeholder="New Trade Description"
+        className="w-full bg-transparent focus:outline-none focus:bg-blue-200"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      {/* </div> */}
+      {/* <div className="h-full flex flex-col">
+        <textarea
+          ref={textareaRef}
+          name="description"
+          placeholder="New Trade Description"
+          className="w-full max-h-[50%] px-2 py-1 border rounded resize-none overflow-auto"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </div> */}
       <div className="flex justify-evenly">
         <button
           type="submit"
