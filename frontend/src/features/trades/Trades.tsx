@@ -69,7 +69,7 @@ export function Trades() {
   }
   return (
     <div className="h-screen">
-      <div className="bg-blue-300 w-full absolute h-[3em] flex">
+      <div className="border border-x-0 border-gray-400 border-2 w-full absolute h-[3em] flex">
         <h1 className="m-auto text-2xl font-bold ">Trade Timeline</h1>
       </div>
       <div className="flex h-full">
@@ -81,7 +81,7 @@ export function Trades() {
             isSelectedTrade={isSelectedTrade}
           />
         </div>
-        <div className="w-1/4 bg-blue-100 mt-[3em]">
+        <div className="w-1/4 border border-l-2 border-gray-400 border-0 mt-[3em]">
           <TradeForm selectedTrade={selectedTrade} dispatch={dispatch} />
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 export function TimeSlider(props: any) {
   return (
-    <div className="bg-blue-100 flex w-full justify-start">
+    <div className="border border-0 border-b-2 border-gray-400 flex w-full justify-start">
       <p>View range: </p>
       <input
         type="range"
