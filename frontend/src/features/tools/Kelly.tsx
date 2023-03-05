@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Button from "../../common/Button";
+import { ButtonVariant } from "../../types/Button";
 
 const KellyCriterionCalculator = () => {
   const [winningProbability, setWinningProbability] = useState(50);
@@ -74,13 +76,12 @@ const KellyCriterionCalculator = () => {
         />
       </div>
       <div className="flex justify-between mt-4">
-        <button
-          className="bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded transition duration-200"
-          // w-min mx-auto
+        <Button
+          variant={ButtonVariant.primary}
           onClick={calculateKellyCriterion}
         >
           Calculate
-        </button>
+        </Button>
         <div className="flex">
           <button
             className={

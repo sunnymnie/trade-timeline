@@ -81,7 +81,7 @@ export function Trades() {
             isSelectedTrade={isSelectedTrade}
           />
         </div>
-        <div className="w-1/4 border border-l-2 border-gray-400 border-0 mt-[3em]">
+        <div className="w-1/4 bg-white border border-l-2 border-gray-400 border-0 mt-[3em]">
           <TradeForm selectedTrade={selectedTrade} dispatch={dispatch} />
         </div>
       </div>

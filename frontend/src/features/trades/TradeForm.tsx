@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../app/store";
+import Button from "../../common/Button";
+import { ButtonVariant } from "../../types/Button";
 import KellyCriterionCalculator from "../tools/Kelly";
 import {
   createTradeAsync,
@@ -180,7 +182,7 @@ export function TradeForm(props: any) {
         />
       </div> */}
         <div className="flex justify-evenly">
-          <button
+          {/* <button
             type="submit"
             className="bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
             onClick={
@@ -190,15 +192,33 @@ export function TradeForm(props: any) {
             }
           >
             {props.selectedTrade ? "Update" : "Create"}
-          </button>
+          </button> */}
+          <Button
+            variant={ButtonVariant.primary}
+            type="submit"
+            onClick={
+              props.selectedTrade
+                ? (e) => updateHandler(e)
+                : (e) => submitHandler(e)
+            }
+          >
+            {props.selectedTrade ? "Update" : "Create"}
+          </Button>
           {props.selectedTrade && (
-            <button
+            // <button
+            //   type="button"
+            //   className="bg-red-300 hover:bg-red-500 text-white font-bold py-2 px-4 rounded"
+            //   onClick={(e) => deleteHandler(e)}
+            // >
+            //   Delete
+            // </button>
+            <Button
+              variant={ButtonVariant.danger}
               type="button"
-              className="bg-red-300 hover:bg-red-500 text-white font-bold py-2 px-4 rounded"
               onClick={(e) => deleteHandler(e)}
             >
               Delete
-            </button>
+            </Button>
           )}
         </div>
       </form>
