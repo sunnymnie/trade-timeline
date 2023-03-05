@@ -11,7 +11,7 @@ export function Month(props: any) {
       }}
     >
       <div className="m-auto">
-        {props.date.toLocaleString("default", { month: "long" })}
+        {props.date.toLocaleString("default", { month: "short" })}
       </div>
     </div>
   );

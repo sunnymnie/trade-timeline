@@ -11,7 +11,9 @@ export function Timeline(props: any) {
   const endDate = new Date(
     new Date().setDate(new Date().getDate() + daysFromNow)
   );
-  const startDate = new Date(new Date().setDate(new Date().getDate() - 10));
+  const startDate = new Date(
+    new Date().setDate(new Date().getDate() - daysFromNow)
+  );
 
   const daysDifferenceBetweenDates = (later: Date, earlier: Date) => {
     return Math.ceil(
@@ -106,7 +108,7 @@ export function Timeline(props: any) {
         date={date}
         start={getStart(date)}
         end={getEnd(getEndOfMonth(date))}
-        top={1}
+        top={rows.length === 0 ? 0 : 1}
       />
     );
     i += days;

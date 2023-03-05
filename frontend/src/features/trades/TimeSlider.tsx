@@ -9,8 +9,11 @@ export function TimeSlider(props: any) {
         min="7"
         max="365"
         value={props.daysFromNow}
-        onChange={(e) => props.setDaysFromNow(parseInt(e.target.value))}
+        onChange={(e) =>
+          props.setDaysFromNow(Math.floor(parseFloat(e.target.value)))
+        }
       />
+      {props.daysFromNow}
     </div>
   );
 }
