@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { AppDispatch } from "../../app/store";
+import Toolbar from "../tools/Toolbar";
 import Timeline from "./Timeline";
 import TimeSlider from "./TimeSlider";
 import Trade from "./Trade";
@@ -81,8 +82,9 @@ export function Trades() {
             isSelectedTrade={isSelectedTrade}
           />
         </div>
-        <div className="w-1/4 bg-white border border-l-2 border-gray-400 border-0 mt-[3em]">
+        <div className="w-1/4 flex flex-col justify-between bg-white border border-l-2 border-gray-400 border-0 mt-[3em]">
           <TradeForm selectedTrade={selectedTrade} dispatch={dispatch} />
+          <Toolbar />
         </div>
       </div>
     </div>

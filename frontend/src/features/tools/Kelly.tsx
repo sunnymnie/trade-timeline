@@ -15,9 +15,6 @@ const KellyCriterionCalculator = () => {
     const fractionGain = (winPrice - price) / price;
     const fractionLoss = (price - lostPrice) / price;
 
-    // const kelly =
-    //   (winProb * fractionGain - (1 - winProb) * fractionLoss) /
-    //   (fractionGain - fractionLoss);
     const kelly = winProb / fractionLoss - (1 - winProb) / fractionGain;
     console.log(winProb, kelly, fractionGain, fractionLoss);
 
@@ -25,7 +22,7 @@ const KellyCriterionCalculator = () => {
   };
 
   return (
-    <div className="flex flex-col mx-4">
+    <div className="flex flex-col">
       <h2 className="text-2xl font-bold my-4">Kelly Criterion Calculator</h2>
       <div className="flex justify-between">
         <div className="">Win-rate (%)</div>
@@ -36,7 +33,7 @@ const KellyCriterionCalculator = () => {
           step="1"
           value={winningProbability}
           onChange={(e) => setWinningProbability(parseFloat(e.target.value))}
-          className="py-2 border rounded-lg"
+          className="py-2 border rounded-lg accent-orange-400"
         />
       </div>
       <div className="flex">
@@ -48,7 +45,7 @@ const KellyCriterionCalculator = () => {
           placeholder="100"
           value={price === 0 ? undefined : price}
           onChange={(e) => setPrice(parseFloat(e.target.value))}
-          className="bg-transparent w-1/3 xl:w-1/2 focus:outline-none focus:bg-blue-200"
+          className="bg-transparent w-1/3 xl:w-1/2 focus:outline-none focus:bg-gray-200"
         />
       </div>
       <div className="flex justify-between">
@@ -60,7 +57,7 @@ const KellyCriterionCalculator = () => {
           placeholder="150"
           value={winPrice === 0 ? undefined : winPrice}
           onChange={(e) => setWinPrice(parseFloat(e.target.value))}
-          className="bg-transparent w-1/3 xl:w-1/2 focus:outline-none focus:bg-blue-200"
+          className="bg-transparent w-1/3 xl:w-1/2 focus:outline-none focus:bg-gray-200"
         />
       </div>
       <div className="flex justify-between">
@@ -72,7 +69,7 @@ const KellyCriterionCalculator = () => {
           placeholder="50"
           value={lostPrice === 0 ? undefined : lostPrice}
           onChange={(e) => setLostPrice(parseFloat(e.target.value))}
-          className="bg-transparent w-1/3 xl:w-1/2 focus:outline-none focus:bg-blue-200"
+          className="bg-transparent w-1/3 xl:w-1/2 focus:outline-none focus:bg-gray-200"
         />
       </div>
       <div className="flex justify-between mt-4">

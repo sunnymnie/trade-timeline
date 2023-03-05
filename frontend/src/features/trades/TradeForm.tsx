@@ -4,6 +4,7 @@ import { AppDispatch } from "../../app/store";
 import Button from "../../common/Button";
 import { ButtonVariant } from "../../types/Button";
 import KellyCriterionCalculator from "../tools/Kelly";
+import Toolbar from "../tools/Toolbar";
 import {
   createTradeAsync,
   destroyTradeAsync,
@@ -118,13 +119,13 @@ export function TradeForm(props: any) {
   }
 
   return (
-    <div>
+    <div className="">
       <form className="flex-col h-full space-y-4 mx-4 my-4">
         <div className="">
           <input
             type="text"
             name="title"
-            className="text-2xl font-bold w-full text-center bg-transparent focus:outline-none focus:bg-blue-200"
+            className="text-2xl font-bold w-full text-center bg-transparent focus:outline-none focus:bg-gray-200"
             placeholder="New Trade Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -136,7 +137,7 @@ export function TradeForm(props: any) {
             <input
               type="date"
               name="start"
-              className="bg-transparent focus:outline-none focus:bg-blue-200"
+              className="bg-transparent focus:outline-none focus:bg-gray-200"
               value={convertDateToString(start)}
               onChange={(e) => setStart(convertStringToDate(e.target.value))}
             />
@@ -146,7 +147,7 @@ export function TradeForm(props: any) {
             <input
               type="date"
               name="end"
-              className="bg-transparent focus:outline-none focus:bg-blue-200"
+              className="bg-transparent focus:outline-none focus:bg-gray-200"
               value={convertDateToString(end)}
               onChange={(e) => setEnd(convertStringToDate(e.target.value))}
             />
@@ -156,7 +157,7 @@ export function TradeForm(props: any) {
         <textarea
           name="description"
           placeholder="New Trade Description"
-          className="min-h-[0] w-full bg-transparent focus:outline-none focus:bg-blue-200"
+          className="min-h-[0] w-full bg-transparent focus:outline-none focus:bg-gray-200"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
@@ -166,7 +167,7 @@ export function TradeForm(props: any) {
           ref={textareaRef}
           name="description"
           placeholder="New Trade Description"
-          className="w-full bg-transparent focus:outline-none focus:bg-blue-200"
+          className="w-full bg-transparent focus:outline-none focus:bg-gray-200"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
@@ -222,9 +223,9 @@ export function TradeForm(props: any) {
           )}
         </div>
       </form>
-      <div>
-        <KellyCriterionCalculator />
-      </div>
+      {/* <div className="mb-0">
+        <Toolbar />
+      </div> */}
     </div>
   );
 }
