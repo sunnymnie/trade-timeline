@@ -31,7 +31,7 @@ const Toolbar = () => {
         <button
           title="Kelly Criterion Calculator"
           className={
-            "py-2 px-4 rounded " +
+            "py-2 px-4 " +
             (activeTool === Tool.kelly
               ? "bg-gray-500 text-white"
               : "bg-gray-200")

@@ -4,9 +4,8 @@ import TimeSlider from "./TimeSlider";
 import Trade from "./Trade";
 
 export function Timeline(props: any) {
-  let date: Date = new Date();
-
   const [daysFromNow, setDaysFromNow] = useState<number>(30);
+  const [showVerticalTimeBar, setShowVerticalTimeBar] = useState(true);
 
   const endDate = new Date(
     new Date().setDate(new Date().getDate() + daysFromNow)
@@ -115,29 +114,35 @@ export function Timeline(props: any) {
   }
 
   return (
-    <div className="h-[100%]">
-      <TimeSlider setDaysFromNow={setDaysFromNow} daysFromNow={daysFromNow} />
-      <div className="">
-        <div className="">
-          {props.trades &&
-            props.trades.length > 0 &&
-            props.trades.map((trade: any) => {
-              return (
-                <div key={trade.id}>
-                  <Trade
-                    dispatch={props.dispatch}
-                    trade={trade}
-                    setSelectedTrade={props.setSelectedTrade}
-                    isSelectedTrade={props.isSelectedTrade}
-                    start={getStart(trade.start)}
-                    end={getEnd(trade.end)}
-                  />
-                </div>
-              );
-            })}
-        </div>
-        <div className="">{rows.map((row: any) => row)}</div>
+    <div className="relative z-0 h-[100%]">
+      <TimeSlider
+        setDaysFromNow={setDaysFromNow}
+        daysFromNow={daysFromNow}
+        showVerticalTimeBar={showVerticalTimeBar}
+        setShowVerticalTimeBar={setShowVerticalTimeBar}
+      />
+      <div className="relative">
+        {showVerticalTimeBar && (
+          <div className="h-full w-1 bg-red-500 absolute left-1/2 transform -translate-x-1/2 z-1" />
+        )}
+        {props.trades &&
+          props.trades.length > 0 &&
+          props.trades.map((trade: any) => {
+            return (
+              <div className="relative" key={trade.id} style={{ zIndex: 1 }}>
+                <Trade
+                  dispatch={props.dispatch}
+                  trade={trade}
+                  setSelectedTrade={props.setSelectedTrade}
+                  isSelectedTrade={props.isSelectedTrade}
+                  start={getStart(trade.start)}
+                  end={getEnd(trade.end)}
+                />
+              </div>
+            );
+          })}
       </div>
+      <div className="">{rows.map((row: any) => row)}</div>
     </div>
   );
 }
